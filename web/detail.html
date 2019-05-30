@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<title>影厅管理</title>
+<style>
+.table th, .table td {
+	text-align: center;
+	height: 30px;
+}
+</style>
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+<script>
+	$(function () {
+		$("#subBtn").click(function () {
+			$.post("insertStudioServlet",$("#myform").serialize(),function (date) {
+				if(date.flag){
+					alert(date.errorMsg);
+				}else{
+					alert(date.errorMsg);
+
+				}
+			})
+		});
+
+	});
+
+</script>
+</head>
+<body >
+
+	<div
+		style="height: 50px; line-height: 50px; font-size: 25px; vertical-align: middle; text-align: center"
+		class="bg-primary">汉唐剧院管理系统</div>
+
+	<div class="row" style="padding: 10px 10px">
+
+		<!-- 左导航栏 -->
+		<div class="col-md-2">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">导航</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-hover">
+						<tr>
+							<td><img src="images/yingting.png" width="24px">&nbsp;&nbsp;<a
+								href="studio.html;"> <font color="red">影厅管理</font></a></td>
+						</tr>
+						<tr>
+							<td><img src="images/zuowei.png" width="24px">&nbsp;&nbsp;<a
+								href="javascript:alert('你们自己做!')">座位管理</a></td>
+						</tr>
+						<tr>
+							<td><img src="images/yingpian.png" width="24px">&nbsp;&nbsp;<a
+								href="javascript:alert('你们自己做!')">影片管理</a></td>
+						</tr>
+						<tr>
+							<td><img src="images/dingpiao.png" width="24px">&nbsp;&nbsp;<a
+								href="javascript:alert('你们自己做!')">计划管理</a></td>
+						</tr>
+						<tr>
+							<td><img src="images/renyuan.png" width="24px">&nbsp;&nbsp;<a
+								href="javascript:alert('你们自己做!')">员工管理</a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<!-- 增加员工信息 -->
+		<div class="col-md-10" style="padding-top: 10px">
+			<form id="myform" class="form-horizontal" role="form" action="#"
+				method="post">
+				<input type="hidden" id="type" name="type">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">影厅编号</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="studio_id"
+							id="studioid" disabled="disabled">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">影厅名称</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="studio_name"
+							id="studioname" placeholder="请输入影厅名称">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">座位行数</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="studio_row_count"
+							id="rowcount" placeholder="请输入座位行数">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">座位列数</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="studio_col_count"
+							id="colcount" placeholder="请输入座位列数">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">影厅描述</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="studio_introduction"
+							id="intro" placeholder="请输入影厅描述">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-2 control-label"
+						style="color: red; font-weight: bold;"></div>
+					<div class="col-sm-6">
+						<!-- <input type="hidden" name="method" value="add"> -->
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn btn-primary" id="subBtn">提
+							交</button>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn btn-warning"
+							onclick="javascript:window.location='studio.html'">返 回</button>
+					</div>
+				</div>
+			</form>
+
+		</div>
+	</div>
+</body>
+</html>
