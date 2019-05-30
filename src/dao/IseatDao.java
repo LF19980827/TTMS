@@ -26,7 +26,7 @@ public interface IseatDao {
      * @param iseat
      * @return 是否修改成功
      */
-    public int update(Connection connection,Iseat iseat);
+    public int update(Connection connection, Iseat iseat);
 
     /**
      * 根据座位ID查找座位
@@ -34,7 +34,7 @@ public interface IseatDao {
      * @param iseat
      * @return 返回被查询座位的所有信息
      */
-    public Iseat select(Connection connection,Iseat iseat);
+    public Iseat select(Connection connection, Iseat iseat);
 
     /**
      * 根据演出厅ID返回该演出厅的所有座位
@@ -50,5 +50,5 @@ public interface IseatDao {
      * @param iseat
      * @return 是否存在
      */
-    public boolean isExist(Connection connection,Iseat iseat);
+    public boolean isExist(Connection connection, Iseat iseat);
 }

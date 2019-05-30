@@ -4,7 +4,10 @@ import Tools.DBUtils;
 import entity.Istudio;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author LFuser
@@ -95,4 +98,6 @@ public class studioDaoImpl extends DBUtils<Istudio> implements IstudioDao {
         String sql = "SELECT * FROM studio WHERE studio_name =?";
         return studioDao.get(connection,sql,istudio.getStudio_name());
     }
+
+
 }

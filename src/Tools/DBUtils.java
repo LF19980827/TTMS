@@ -32,13 +32,13 @@ public class DBUtils<T> implements DAO<T> {
         type = ReflectionUtils.getSuperGenericType(getClass());
     }
 
-//    //数据库连接池只初始化一次
-//    private static DataSource dataSource = null;
-//
-//    /**
-//     * 1.加载 dbcp 的 properties 配置文件
-//     * 2.调用 BasicDataSourceFactory 的 createDataSource 方法 创建 DataSource实例
-//     */
+    //数据库连接池只初始化一次
+    private static DataSource dataSource = null;
+
+    /**
+     * 1.加载 dbcp 的 properties 配置文件
+     * 2.调用 BasicDataSourceFactory 的 createDataSource 方法 创建 DataSource实例
+     */
 //    static {
 //        Properties properties = new Properties();
 //        InputStream inputStream =

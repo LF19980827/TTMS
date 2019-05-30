@@ -4,34 +4,44 @@ package servlet;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.Iemployee;
 import entity.ResultInfo;
-import service.IstudioService;
+import org.apache.commons.beanutils.BeanUtils;
+import service.IemployeeService;
 import service.employeeServiceImpl;
-import service.studioServiceImpl;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 
 
 @WebServlet("/loginServlet_ajax")
 public class loginServlet_ajax extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1.获取用户名和密码操作
-        String user = request.getParameter("user");
-        String password = request.getParameter("password");
+        Map<String, String[]> parameterMap = request.getParameterMap();
 
+        Iemployee iemployee = new Iemployee();
 
-        Iemployee iemployee = new Iemployee(user,password);
+        try {
+            BeanUtils.populate(iemployee,parameterMap);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
 
         //3.调用service查询
-        employeeServiceImpl service = new employeeServiceImpl();
+        IemployeeService service = new employeeServiceImpl();
         Iemployee iemployee1 = service.login(iemployee);
 
         ResultInfo info = new ResultInfo();
+
+        System.out.println(iemployee);
 
         //4.判断用户名密码是否错误
         if(iemployee1 == null){
@@ -41,11 +51,12 @@ public class loginServlet_ajax extends HttpServlet {
             info.setFlag(true);
         }
 
+        System.out.println(iemployee1);
+
         //5.响应数据
         ObjectMapper mapper = new ObjectMapper();
-
         response.setContentType("application/json;charset=utf-8");
-        mapper.writeValue(response.getOutputStream(),info); 
+        mapper.writeValue(response.getOutputStream(),info);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

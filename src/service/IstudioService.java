@@ -3,8 +3,10 @@ package service;
 
 import entity.Iemployee;
 import entity.Istudio;
+import entity.PageBean;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IstudioService {
     /**
@@ -26,13 +28,5 @@ public interface IstudioService {
      * @return
      */
     public List<Istudio> studioGet(Istudio istudio);
-
-    /**
-     *根据演出厅ID修改信息
-     * @param istudio
-     * @return
-     */
-    public int studioUpdate(Istudio istudio);
-
 
 }

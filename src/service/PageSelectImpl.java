@@ -1,9 +1,7 @@
 package service;
 
-import Tools.DBUtils;
-import dao.PageDao;
-import dao.PageDaoImpl;
-import entity.Istudio;
+import Tools.DBUtils;;
+import dao.*;
 import entity.PageBean;
 
 import java.sql.Connection;
@@ -14,7 +12,7 @@ public class PageSelectImpl<T> implements PageSelect{
 
     Connection connection = null;
     @Override
-    public PageBean<T> findStudioByPage(int currentPage, int rows, Map condition,String table) {
+    public PageBean<T> findByPage(int currentPage, int rows, Map condition, String table) {
         Connection connection = DBUtils.getConnection();
 
         PageDao<T> pageDao = new PageDaoImpl();
@@ -25,8 +23,10 @@ public class PageSelectImpl<T> implements PageSelect{
             currentPage = 1;
         }
 
+
+
         //2.查询总记录数
-        int totalCount = pageDao.findByPage(connection, condition,table).size();
+        int totalCount = pageDao.judge(connection, table,condition).size();
         PageBean.setTotalCount(totalCount);
 
         int totalPage = totalCount % rows == 0 ? totalCount / rows : totalCount / rows + 1;
@@ -46,9 +46,11 @@ public class PageSelectImpl<T> implements PageSelect{
 
         //4.每页的list集合
         int start = (currentPage - 1)*rows;
-        List<T> list = pageDao.findByPage(connection,start,rows,condition,table);
+        List<T> list = pageDao.judge(connection,table,start,rows,condition);
         PageBean.setList(list);
 
         return PageBean;
     }
+
+
 }

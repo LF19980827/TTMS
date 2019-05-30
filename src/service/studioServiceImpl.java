@@ -2,12 +2,12 @@ package service;
 
 import Tools.DBUtils;
 import dao.*;
-import entity.Iemployee;
-import entity.Iseat;
 import entity.Istudio;
+import entity.PageBean;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 public class studioServiceImpl implements IstudioService {
 
@@ -55,16 +55,6 @@ public class studioServiceImpl implements IstudioService {
         List<Istudio> istudios = istudioDao.select(connection,istudio);
         DBUtils.releaseDB(connection);
         return istudios;
-    }
-
-    @Override
-    public int studioUpdate(Istudio istudio) {
-        connection = DBUtils.getConnection();
-        int i = -1;
-        if (istudioDao.isExist(connection,istudio)){
-            i = istudioDao.update(connection,istudio);
-        }
-        return i;
     }
 
 

@@ -5,6 +5,7 @@ import entity.Istudio;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author LFuser
@@ -27,7 +28,7 @@ public interface IstudioDao {
      * @param istudio
      * @return 是否修改成功
      */
-    public int update(Connection connection,Istudio istudio);
+    public int update(Connection connection, Istudio istudio);
 
     /**
      * 根据演出厅名进行模糊查询
@@ -35,7 +36,7 @@ public interface IstudioDao {
      * @param istudio
      * @return 返回模糊查询的所有结果
      */
-    public List<Istudio> select(Connection connection,Istudio istudio);
+    public List<Istudio> select(Connection connection, Istudio istudio);
 
     /**
      * 返回所有演出厅信息
@@ -50,7 +51,7 @@ public interface IstudioDao {
      * @param istudio
      * @return
      */
-    public boolean isExist(Connection connection,Istudio istudio);
+    public boolean isExist(Connection connection, Istudio istudio);
 
     /**
      * 根据演出厅名称精确查出演出厅信息
@@ -58,5 +59,7 @@ public interface IstudioDao {
      * @param istudio
      * @return 返回被查询的演出厅信息
      */
-    public Istudio select2(Connection connection,Istudio istudio);
+    public Istudio select2(Connection connection, Istudio istudio);
+
+
 }

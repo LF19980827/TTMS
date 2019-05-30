@@ -104,7 +104,7 @@ public class employeeDaoImpl extends DBUtils<Iemployee> implements IemployeeDao{
     @Override
     public Iemployee login(Connection connection, Iemployee iemployee) {
         employeeDaoImpl employeeDao = new employeeDaoImpl();
-        String sql = "SELECT * FROM employee WHERE emp_user = ? AND emp_password = ?";
+        String sql = "SELECT * FROM employee WHERE emp_user = ? and emp_password = ? ";
         return employeeDao.get(connection,sql,iemployee.getEmp_user(),iemployee.getEmp_password());
     }
 }

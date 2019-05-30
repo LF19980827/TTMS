@@ -27,7 +27,7 @@ public interface IplayDao {
      * @param iplay
      * @return 是否修改成功
      */
-    public int update(Connection connection,Iplay iplay);
+    public int update(Connection connection, Iplay iplay);
 
     /**
      * 根据电影ID查询电影信息
@@ -35,7 +35,7 @@ public interface IplayDao {
      * @param iplay
      * @return 返回被查询电影的所有信息
      */
-    public Iplay select(Connection connection,Iplay iplay);
+    public Iplay select(Connection connection, Iplay iplay);
 
     /**
      * 返回所有电影信息
@@ -50,5 +50,5 @@ public interface IplayDao {
      * @param iplay
      * @return 是否存在
      */
-    public boolean isExist(Connection connection,Iplay iplay);
+    public boolean isExist(Connection connection, Iplay iplay);
 }

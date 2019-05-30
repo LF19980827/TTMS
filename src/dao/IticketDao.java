@@ -26,7 +26,7 @@ public interface IticketDao {
      * @param iticket
      * @return 是否修改成功
      */
-    public int update(Connection connection,Iticket iticket);
+    public int update(Connection connection, Iticket iticket);
 
     /**
      * 根据演出票ID查询演出票信息
@@ -34,7 +34,7 @@ public interface IticketDao {
      * @param iticket
      * @return 返回被查询演出票的所有信息
      */
-    public Iticket select(Connection connection,Iticket iticket);
+    public Iticket select(Connection connection, Iticket iticket);
 
     /**
      * 根据演出计划返回所有演出票的信息
@@ -42,7 +42,7 @@ public interface IticketDao {
      * @param iticket
      * @return 返回该演出计划的所有演出票信息
      */
-    public List<Iticket> getAll(Connection connection,Iticket iticket);
+    public List<Iticket> getAll(Connection connection, Iticket iticket);
 
     /**
      * 根据演出票ID判断是否存在
@@ -50,6 +50,6 @@ public interface IticketDao {
      * @param iticket
      * @return 是否存在
      */
-    public boolean isExist(Connection connection,Iticket iticket);
+    public boolean isExist(Connection connection, Iticket iticket);
 
 }

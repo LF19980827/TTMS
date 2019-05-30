@@ -2,12 +2,13 @@ package entity;
 
 import java.util.List;
 
-public class PageBean<T> {
-    private int totalCount; //总记录数
-    private int totalPage; //总页码
-    private int currentPage; //当前页码
-    private int rows; //每页展示的条数
-    private List<T> list; //每页数据的list集合
+public class PageBean<T>{
+    private int totalCount;//总记录数
+    private int totalPage;//总页码
+    private int currentPage;//当前页面
+    private int rows;//每页展示d额条数
+    private List<T> list;//每页显示数据的list集合
+
 
     public int getTotalCount() {
         return totalCount;
@@ -53,10 +54,12 @@ public class PageBean<T> {
     public String toString() {
         return "PageBean{" +
                 "totalCount=" + totalCount +
-                ", tatalPage=" + totalPage +
+                ", totalPage=" + totalPage +
                 ", currentPage=" + currentPage +
                 ", rows=" + rows +
                 ", list=" + list +
                 '}';
     }
+
+
 }

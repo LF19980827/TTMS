@@ -5,9 +5,6 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <title>影厅管理</title>
 <style>
-body {
-	width: 100%
-}
 
 .table th, .table td {
 	text-align: center;
@@ -17,33 +14,6 @@ body {
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
-<script>
-	$(function () {
-		$.get("selectAllServlet",{},function (data) {
-			var lis = '<tr>\n' +
-					'<th>序号</th>\n' +
-					'<th>影厅名称</th>\n' +
-					'<th>座位行数</th>\n' +
-					'<th>座位列数</th>\n' +
-					'<th>影厅描述</th>\n' +
-					'<th>操作</th>\n' +
-					'</tr>';
-			for (var i = 0; i<data.length ;i++){
-				var route = data[i];
-				var li = '<tr>\n' +
-						'\t\t\t\t<td>'+route.studio_id+'</td>\n' +
-						'\t\t\t\t<td>'+route.studio_name+'</td>\n' +
-						'\t\t\t\t<td>'+route.studio_row_count+'</td>\n' +
-						'\t\t\t\t<td>'+route.studio_col_count+'</td>\n' +
-						'\t\t\t\t<td>'+route.studio_introduction+'</td>\n' +
-						'\t\t\t\t<td>修改</td>\n' +
-						'\t\t\t</tr>';
-				lis +=li;
-			}
-			$("#table").html(lis);
-		});
-	});
-</script>
 </head>
 <body >
   <div
@@ -62,7 +32,7 @@ body {
 					<table class="table table-hover">
 						<tr>
 							<td><img src="images/yingting.png" width="24px">&nbsp;&nbsp;<a
-								href="javascript:void (0)"> <font color="red">影厅管理</font></a></td>
+								href="javascript:" onclick=select_studio(1);><font color="red">影厅管理</font></a></td>
 						</tr>
 						<tr>
 							<td><img src="images/zuowei.png" width="24px">&nbsp;&nbsp;<a
@@ -70,7 +40,7 @@ body {
 						</tr>
 						<tr>
 							<td><img src="images/yingpian.png" width="24px">&nbsp;&nbsp;<a
-								href="javascript:alert('你们自己做!')">影片管理</a></td>
+								href="javascript:" onclick=select_play(1);>影片管理</a></td>
 						</tr>
 						<tr>
 							<td><img src="images/dingpiao.png" width="24px">&nbsp;&nbsp;<a
@@ -78,7 +48,7 @@ body {
 						</tr>
 						<tr>
 							<td><img src="images/renyuan.png" width="24px">&nbsp;&nbsp;<a
-								href="javascript:alert('你们自己做!')">员工管理</a></td>
+								href="javascript:" onclick=select_employee(1);>员工管理</a></td>
 						</tr>
 					</table>
 				</div>
@@ -91,44 +61,183 @@ body {
 	<div class="search">
 		<form class="form-inline" name="myForm" action="#" method="post">
 			<!-- <input type="hidden" name="method" value="search"/> -->
-			影厅名称:
+			<span>影厅名称:</span>
 			<input type="text" class="form-control" id="studioname" name="studioname"/>&nbsp;&nbsp; 
-			<input type="button" class="btn btn-primary" value="查   询" onclick="search()" />&nbsp;&nbsp; 
+			<input type="button" class="btn btn-primary" value="查   询" id="select"  />&nbsp;&nbsp;
 			<input type="button" class="btn btn-danger" value="增   加" onclick="javascript:window.location='detail.html?type=add'" />
 		</form>
 	</div>
 
 
 	<!-- 员工信息显示-->
-	<div style="padding-top: 10px;">
+	<div style="padding-top: 10px;" id="studio">
 		<table id="table" class="table table-bordered table-hover" style="text-align: center;">
-			<tr>
-				<th>影厅编号</th>
-				<th>影厅名称</th>
-				<th>座位行数</th>
-				<th>座位列数</th>
-				<th>影厅描述</th>
-				<th>操作</th>
+			<tr id="table_tr">
 			</tr>
-
 		</table>
 	</div>
 
 	<!-- 分页 -->
-	<!-- 
-		<div class="text-center">
-			<nav>
-			  <ul class="pagination">
-			    <li><a href="#">首页</a></li>
-			    <li><a href="#">上一页</a></li>
-			    <li><a href="#">下一页</a></li>
-			    <li><a href="#">末页</a></li>
-			  </ul>
-			</nav>
-		</div>
-		-->
+	  <nav aria-label="Page navigation" id="nav">
+	  </nav>
   </div>
 </div>
+<script>
 
+	// const studio  = document.getElementById("studio");
+	// studio.style.display = "none";
+</script>
+  <script>
+	  function select_studio(currentPage) {
+		  $.get("studio/select",{currentPage:currentPage,studio_name:$("#studioname").val()},function (data) {
+			  //数据
+			  $("#table_tr").siblings().remove();
+			  var lis = '<th>影厅编号</th>\n' +
+					  '\t\t\t\t<th>影厅名称</th>\n' +
+					  '\t\t\t\t<th>座位行数</th>\n' +
+					  '\t\t\t\t<th>座位列数</th>\n' +
+					  '\t\t\t\t<th>影厅描述</th>\n' +
+					  '\t\t\t\t<th>操作</th>';
+			  $("#table_tr").html(lis);
+			  lis = "";
+			  for (var i = 0; i<data.list.length ;i++){
+				  var studio =data.list[i] ;
+				  var td = '<tr>' +
+						  '<td>'+studio.studio_id+'</td>'+
+						  '<td>'+studio.studio_name+'</td>'+
+						  '<td>'+studio.studio_row_count+'</td>'+
+						  '<td>'+studio.studio_col_count+'</td>'+
+						  '<td>'+studio.studio_introduction+'</td>'+
+						  '<td>删除</td>'+
+						  '</tr>';
+				  lis +=td;
+			  }
+			  $("#table").append(lis);
+			  //分页条
+			  var before = data.currentPage - 1 ;
+			  var after = data.currentPage + 1 ;
+			  var nav = '<ul class="pagination">' +
+					  '<li>' +
+					  '<a href="javascript:select_studio('+before+')" aria-label="Previous">' +
+					  '<span aria-hidden="true">&laquo;</span>' +
+					  '</a>' +
+					  ' </li>';
+
+			  for (var i = 1; i <= data.totalPage;i++){
+				  var ul = '<li><a href="javascript:select_studio('+i+')">'+i+'</a></li>';
+				  nav +=ul;
+			  }
+			  nav += '<li>' +
+					  '<a href="javascript:select_studio('+after+')" aria-label="Next">' +
+					  '<span aria-hidden="true">&raquo;</span>' +
+					  '</a>' +
+					  '</li>' +
+					  '</ul>'
+			  $("#nav").html(nav);
+		  });
+	  }
+
+	  function select_employee(currentPage) {
+		  $.get("employee/select",{currentPage:currentPage},function (data) {
+			  //数据
+			  $("#table_tr").siblings().remove();
+			  var lis = '<th>员工编号</th>\n' +
+					  '\t\t\t\t<th>员工姓名</th>\n' +
+					  '\t\t\t\t<th>员工电话</th>\n' +
+					  '\t\t\t\t<th>员工住址</th>\n' +
+					  '\t\t\t\t<th>员工邮箱</th>\n' +
+					  '\t\t\t\t<th>员工账户</th>\n' +
+					  '\t\t\t\t<th>员工密码</th>';
+			  $("#table_tr").html(lis);
+			  lis = "";
+			  for (var i = 0; i<data.list.length ;i++){
+				  var emp =data.list[i] ;
+				  var td = '<tr>' +
+						  '<td>'+emp.emp_no+'</td>'+
+						  '<td>'+emp.emp_name+'</td>'+
+						  '<td>'+emp.emp_tel_num+'</td>'+
+						  '<td>'+emp.emp_addr+'</td>'+
+						  '<td>'+emp.emp_email+'</td>'+
+						  '<td>'+emp.emp_user+'</td>'+
+						  '<td>'+emp.emp_password+'</td>'+
+						  '</tr>';
+				  lis +=td;
+			  }
+			  $("#table").append(lis);
+			  //分页条
+			  var before = data.currentPage - 1 ;
+			  var after = data.currentPage + 1 ;
+			  var nav = '<ul class="pagination">' +
+					  '<li>' +
+					  '<a href="javascript:select_employee('+before+')" aria-label="Previous">' +
+					  '<span aria-hidden="true">&laquo;</span>' +
+					  '</a>' +
+					  ' </li>';
+
+			  for (var i = 1; i <= data.totalPage;i++){
+				  var ul = '<li><a href="javascript:select_employee('+i+')">'+i+'</a></li>';
+				  nav +=ul;
+			  }
+			  nav += '<li>' +
+					  '<a href="javascript:select_employee('+after+')" aria-label="Next">' +
+					  '<span aria-hidden="true">&raquo;</span>' +
+					  '</a>' +
+					  '</li>' +
+					  '</ul>'
+			  $("#nav").html(nav);
+		  });
+	  }
+
+	  function select_play(currentPage) {
+		  $.get("play/select",{currentPage:currentPage},function (data) {
+			  //数据
+			  $("#table_tr").siblings().remove();
+			  var lis = '<th>type_id</th>\n' +
+					  '\t\t\t\t<th>type_id</th>\n' +
+					  '\t\t\t\t<th>name</th>\n' +
+					  '\t\t\t\t<th>introduction</th>\n' +
+					  '\t\t\t\t<th>length</th>\n' +
+					  '\t\t\t\t<th>ticket_price</th>\n' +
+					  '\t\t\t\t<th>status</th>';
+			  $("#table_tr").html(lis);
+			  lis = "";
+			  for (var i = 0; i<data.list.length ;i++){
+				  var  play= data.list[i] ;
+				  var td = '<tr>' +
+						  '<td>'+play.play_type_id+'</td>'+
+						  '<td>'+play.play_lang_id+'</td>'+
+						  '<td>'+play.play_name+'</td>'+
+						  '<td>'+play.play_introduction+'</td>'+
+						  '<td>'+play.play_length+'</td>'+
+						  '<td>'+play.play_ticket_price+'</td>'+
+						  '<td>'+play.play_status+'</td>'+
+						  '</tr>';
+				  lis +=td;
+			  }
+			  $("#table").append(lis);
+			  //分页条
+			  var before = data.currentPage - 1 ;
+			  var after = data.currentPage + 1 ;
+			  var nav = '<ul class="pagination">' +
+					  '<li>' +
+					  '<a href="javascript:select_play('+before+')" aria-label="Previous">' +
+					  '<span aria-hidden="true">&laquo;</span>' +
+					  '</a>' +
+					  ' </li>';
+
+			  for (var i = 1; i <= data.totalPage;i++){
+				  var ul = '<li><a href="javascript:select_play('+i+')">'+i+'</a></li>';
+				  nav +=ul;
+			  }
+			  nav += '<li>' +
+					  '<a href="javascript:select_play('+after+')" aria-label="Next">' +
+					  '<span aria-hidden="true">&raquo;</span>' +
+					  '</a>' +
+					  '</li>' +
+					  '</ul>'
+			  $("#nav").html(nav);
+		  });
+	  }
+  </script>
 </body>
 </html>
