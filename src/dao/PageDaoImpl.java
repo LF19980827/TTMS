@@ -38,10 +38,14 @@ public class PageDaoImpl  implements PageDao{
      * @param condition
      */
     public void loop(Map condition ,String table){
+        //每次调用前初始化，不然会产生重复元素，导致sql出错
+        sb = new StringBuilder();
+        params = new ArrayList();
         Map<String,String[]> c = condition;
         Set<String> keySet = condition.keySet();
         String sql = "select * from "+table+" where 1 = 1";
         sb = new StringBuilder(sql);
+        boolean flag = true;//判断是否添加过value
         for (String ks : keySet) {
 
             if("currentPage".equals(ks) || "rows".equals(ks)){

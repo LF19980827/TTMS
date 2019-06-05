@@ -15,7 +15,7 @@
 <script>
 	$(function () {
 		$("#subBtn").click(function () {
-			$.post("insertStudioServlet",$("#myform").serialize(),function (date) {
+			$.post("employee/insert",$("#myform").serialize(),function (date) {
 				if(date.flag){
 					alert(date.errorMsg);
 				}else{
@@ -51,19 +51,19 @@
 						</tr>
 						<tr>
 							<td><img src="images/zuowei.png" width="24px">&nbsp;&nbsp;<a
-								href="javascript:alert('你们自己做!')">座位管理</a></td>
+								href="studio.html;">座位管理</a></td>
 						</tr>
 						<tr>
 							<td><img src="images/yingpian.png" width="24px">&nbsp;&nbsp;<a
-								href="javascript:alert('你们自己做!')">影片管理</a></td>
+								href="studio.html;">影片管理</a></td>
 						</tr>
 						<tr>
 							<td><img src="images/dingpiao.png" width="24px">&nbsp;&nbsp;<a
-								href="javascript:alert('你们自己做!')">计划管理</a></td>
+								href="studio.html;">计划管理</a></td>
 						</tr>
 						<tr>
 							<td><img src="images/renyuan.png" width="24px">&nbsp;&nbsp;<a
-								href="javascript:alert('你们自己做!')">员工管理</a></td>
+								href="studio.html;">员工管理</a></td>
 						</tr>
 					</table>
 				</div>
@@ -76,38 +76,52 @@
 				method="post">
 				<input type="hidden" id="type" name="type">
 				<div class="form-group">
-					<label class="col-sm-2 control-label">影厅编号</label>
+					<label class="col-sm-2 control-label">员工编号</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" name="studio_id"
-							id="studioid" disabled="disabled">
+						<input type="text" class="form-control" name="emp_no"
+							   placeholder="请输入员工编号">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">影厅名称</label>
+					<label class="col-sm-2 control-label">员工姓名</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" name="studio_name"
-							id="studioname" placeholder="请输入影厅名称">
+						<input type="text" class="form-control" name="emp_name"
+							   placeholder="请输入员工姓名">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">座位行数</label>
+					<label class="col-sm-2 control-label">员工电话</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" name="studio_row_count"
-							id="rowcount" placeholder="请输入座位行数">
+						<input type="text" class="form-control" name="emp_tel_num"
+							   placeholder="请输入员工电话">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">座位列数</label>
+					<label class="col-sm-2 control-label">员工住址</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" name="studio_col_count"
-							id="colcount" placeholder="请输入座位列数">
+						<input type="text" class="form-control" name="emp_addr"
+							   placeholder="请输入员工住址">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">影厅描述</label>
+					<label class="col-sm-2 control-label">员工邮箱</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" name="studio_introduction"
-							id="intro" placeholder="请输入影厅描述">
+						<input type="text" class="form-control" name="emp_email"
+							   placeholder="请输入员工邮箱">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">员工账户</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="emp_user"
+							   placeholder="请输入员工账户">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">员工密码</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="emp_password"
+							   placeholder="请输入员工密码">
 					</div>
 				</div>
 				<div class="form-group">

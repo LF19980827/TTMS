@@ -15,9 +15,9 @@
 <script>
 	$(function () {
 		$("#subBtn").click(function () {
-			$.post("insertStudioServlet",$("#myform").serialize(),function (date) {
+			$.post("studio/add",$("#myform").serialize(),function (date) {
 				if(date.flag){
-					alert(date.errorMsg);
+					alert(date.successMsg);
 				}else{
 					alert(date.errorMsg);
 
@@ -51,19 +51,19 @@
 						</tr>
 						<tr>
 							<td><img src="images/zuowei.png" width="24px">&nbsp;&nbsp;<a
-								href="javascript:alert('你们自己做!')">座位管理</a></td>
+								href="studio.html;">座位管理</a></td>
 						</tr>
 						<tr>
 							<td><img src="images/yingpian.png" width="24px">&nbsp;&nbsp;<a
-								href="javascript:alert('你们自己做!')">影片管理</a></td>
+								href="studio.html;">影片管理</a></td>
 						</tr>
 						<tr>
 							<td><img src="images/dingpiao.png" width="24px">&nbsp;&nbsp;<a
-								href="javascript:alert('你们自己做!')">计划管理</a></td>
+								href="studio.html;">计划管理</a></td>
 						</tr>
 						<tr>
 							<td><img src="images/renyuan.png" width="24px">&nbsp;&nbsp;<a
-								href="javascript:alert('你们自己做!')">员工管理</a></td>
+								href="studio.html;">员工管理</a></td>
 						</tr>
 					</table>
 				</div>

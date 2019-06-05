@@ -1,6 +1,7 @@
 package dao;
 
 import Tools.DBUtils;
+import entity.Iseat;
 import entity.Istudio;
 
 import java.sql.Connection;
@@ -25,8 +26,15 @@ public class studioDaoImpl extends DBUtils<Istudio> implements IstudioDao {
 
         studioDaoImpl studioDao = new studioDaoImpl();
         String sql = "INSERT INTO studio (studio_name,studio_row_count,studio_col_count,studio_introduction) VALUES(?,?,?,?)";
+
         int i = studioDao.update(connection, sql, istudio.getStudio_name(), istudio.getStudio_row_count(),
                 istudio.getStudio_col_count(), istudio.getStudio_introduction());
+
+        sql = "select * from studio where studio_name = ?";
+        istudio = studioDao.get(connection,sql,istudio.getStudio_name());
+
+        insertSeat(connection,istudio);
+
         return i;
     }
 
@@ -97,6 +105,24 @@ public class studioDaoImpl extends DBUtils<Istudio> implements IstudioDao {
         studioDaoImpl studioDao = new studioDaoImpl();
         String sql = "SELECT * FROM studio WHERE studio_name =?";
         return studioDao.get(connection,sql,istudio.getStudio_name());
+    }
+
+    /**
+     * 创建演出厅的时候增加座位
+     * @param connection
+     * @param istudio
+     */
+    private void insertSeat(Connection connection, Istudio istudio) {
+        Iseat iseat = new Iseat();
+        seatDaoImpl seatDao = new seatDaoImpl();
+        for (int i = 1; i <= istudio.getStudio_row_count(); i++) {
+            for (int j = 1; j <= istudio.getStudio_col_count(); j++) {
+                iseat.setSeat_row(i);
+                iseat.setSeat_column(j);
+                iseat.setStudio_id(istudio.getStudio_id());
+                seatDao.insert(connection,iseat);
+            }
+        }
     }
 
 

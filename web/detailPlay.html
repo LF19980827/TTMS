@@ -37,33 +37,32 @@
 
 	<div class="row" style="padding: 10px 10px">
 
-		<!-- 左导航栏 -->
 		<div class="col-md-2">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title">导航</h3>
 				</div>
 				<div class="panel-body">
-					<table class="table table-hover">
+					<table class="table table-hover" id="nav_table">
 						<tr>
 							<td><img src="images/yingting.png" width="24px">&nbsp;&nbsp;<a
-								href="studio.html;">影厅管理</a></td>
+									href="javascript:" onclick=studio() >影厅管理</a></td>
 						</tr>
 						<tr>
 							<td><img src="images/zuowei.png" width="24px">&nbsp;&nbsp;<a
-								href="javascript:alert('你们自己做!')">座位管理</a></td>
+									href="javascript:" onclick=seat()>座位管理</a></td>
 						</tr>
 						<tr>
 							<td><img src="images/yingpian.png" width="24px">&nbsp;&nbsp;<a
-								href="javascript:alert('你们自己做!')">影片管理</a></td>
+									href="javascript:" onclick=play()>影片管理</a></td>
 						</tr>
 						<tr>
 							<td><img src="images/dingpiao.png" width="24px">&nbsp;&nbsp;<a
-								href="javascript:alert('你们自己做!')">计划管理</a></td>
+									href="javascript:" onclick=schedule()>计划管理</a></td>
 						</tr>
 						<tr>
 							<td><img src="images/renyuan.png" width="24px">&nbsp;&nbsp;<a
-								href="javascript:alert('你们自己做!')">员工管理</a></td>
+									href="javascript:" onclick=employee();>员工管理</a></td>
 						</tr>
 					</table>
 				</div>
@@ -76,38 +75,59 @@
 				method="post">
 				<input type="hidden" id="type" name="type">
 				<div class="form-group">
-					<label class="col-sm-2 control-label">影厅编号</label>
+					<label class="col-sm-2 control-label">电影ID</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" name="studio_id"
-							id="studioid" disabled="disabled">
+						<input type="text" class="form-control" name="play_id"
+							   disabled="disabled">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">影厅名称</label>
+					<label class="col-sm-2 control-label">电影类型ID</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" name="studio_name"
-							id="studioname" placeholder="请输入影厅名称">
+						<input type="text" class="form-control" name="play_type_id"
+							   placeholder="请输入电影类型ID">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">座位行数</label>
+					<label class="col-sm-2 control-label">电影语言ID</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" name="studio_row_count"
-							id="rowcount" placeholder="请输入座位行数">
+						<input type="text" class="form-control" name="play_lang_id"
+							   placeholder="请输入电影语言ID">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">座位列数</label>
+					<label class="col-sm-2 control-label">电影名称</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" name="studio_col_count"
-							id="colcount" placeholder="请输入座位列数">
+						<input type="text" class="form-control" name="play_name"
+							   placeholder="请输入电影名称">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">影厅描述</label>
+					<label class="col-sm-2 control-label">剧情简介</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" name="studio_introduction"
-							id="intro" placeholder="请输入影厅描述">
+						<input type="text" class="form-control" name="play_introduction"
+							   placeholder="请输入剧情简介">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">演出时长</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="play_length"
+							   placeholder="请输入演出时长">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">基准票价</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="play_ticket_price"
+							   placeholder="请输入基准票价">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">剧情简介</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="play_status"
+							   placeholder="电影状态">
 					</div>
 				</div>
 				<div class="form-group">
@@ -127,5 +147,7 @@
 
 		</div>
 	</div>
+
+<script src="js/studio.js"></script>
 </body>
 </html>
