@@ -15,9 +15,9 @@
 <script>
 	$(function () {
 		$("#subBtn").click(function () {
-			$.post("insertStudioServlet",$("#myform").serialize(),function (date) {
+			$.post("schedule/add",$("#myform").serialize(),function (date) {
 				if(date.flag){
-					alert(date.errorMsg);
+					alert(date.successMsg);
 				}else{
 					alert(date.errorMsg);
 
@@ -99,7 +99,7 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label">演出时间</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" name="sched_time"
+						<input type="text" class="form-control" name="sched_time_String"
 							   placeholder="请输入演出时间">
 					</div>
 				</div>

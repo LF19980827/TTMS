@@ -41,8 +41,6 @@ public class loginServlet_ajax extends HttpServlet {
 
         ResultInfo info = new ResultInfo();
 
-        System.out.println(iemployee);
-
         //4.判断用户名密码是否错误
         if(iemployee1 == null){
             info.setFlag(false);
@@ -51,12 +49,11 @@ public class loginServlet_ajax extends HttpServlet {
             info.setFlag(true);
         }
 
-        System.out.println(iemployee1);
-
         //5.响应数据
         ObjectMapper mapper = new ObjectMapper();
+
         response.setContentType("application/json;charset=utf-8");
-        mapper.writeValue(response.getOutputStream(),info);
+        mapper.writeValue(response.getOutputStream(),info); 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

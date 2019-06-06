@@ -120,6 +120,7 @@ public class studioDaoImpl extends DBUtils<Istudio> implements IstudioDao {
      */
     private void insertSeat(Connection connection, Istudio istudio) {
         Iseat iseat = new Iseat();
+        iseat.setSeat_status(1);
         seatDaoImpl seatDao = new seatDaoImpl();
         for (int i = 1; i <= istudio.getStudio_row_count(); i++) {
             for (int j = 1; j <= istudio.getStudio_col_count(); j++) {

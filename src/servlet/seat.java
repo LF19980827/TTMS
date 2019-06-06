@@ -1,6 +1,7 @@
 package servlet;
 
 import entity.PageBean;
+import entity.ResultInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +14,9 @@ public class seat extends BaseServlet {
     protected void select(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         servletUtil servletUtil = new servletUtil();
         PageBean pageBean = servletUtil.Page(request, "seat");
-        servletUtil.back(response,pageBean);
+        ResultInfo info = new ResultInfo();
+        info.setObj(pageBean);
+        servletUtil.back(response,info);
     }
 
 

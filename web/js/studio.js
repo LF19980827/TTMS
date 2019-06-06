@@ -16,8 +16,8 @@ function select_studio(currentPage) {
             '\t\t\t\t<th>操作</th>';
         $("#table_tr").html(lis);
         lis = "";
-        for (var i = 0; i<data.list.length ;i++){
-            var studio =data.list[i] ;
+        for (var i = 0; i<data.obj.list.length ;i++){
+            var studio = data.obj.list[i] ;
             var td = '<tr>' +
                 '<td>'+studio.studio_id+'</td>'+
                 '<td>'+studio.studio_name+'</td>'+
@@ -30,8 +30,8 @@ function select_studio(currentPage) {
         }
         $("#table").append(lis);
         //分页条
-        var before = data.currentPage - 1 ;
-        var after = data.currentPage + 1 ;
+        var before = data.obj.currentPage - 1 ;
+        var after = data.obj.currentPage + 1 ;
 
 
         var nav = '<ul class="pagination">' +
@@ -41,8 +41,8 @@ function select_studio(currentPage) {
             '</a>' +
             ' </li>';
 
-        for (var i = 1; i <= data.totalPage;i++){
-            if(i == data.currentPage){
+        for (var i = 1; i <= data.obj.totalPage;i++){
+            if(i == data.obj.currentPage){
                 var ul = '<li class="active"><a href="javascript:select_studio('+i+')">'+i+'</a></li>';
             }else{
                 var ul = '<li><a href="javascript:select_studio('+i+')">'+i+'</a></li>';
@@ -77,8 +77,8 @@ function select_employee(currentPage) {
             '\t\t\t\t<th>员工密码</th>';
         $("#table_tr").html(lis);
         lis = "";
-        for (var i = 0; i<data.list.length ;i++){
-            var emp =data.list[i] ;
+        for (var i = 0; i<data.obj.list.length ;i++){
+            var emp =data.obj.list[i] ;
             var td = '<tr>' +
                 '<td>'+emp.emp_no+'</td>'+
                 '<td>'+emp.emp_name+'</td>'+
@@ -92,8 +92,8 @@ function select_employee(currentPage) {
         }
         $("#table").append(lis);
         //分页条
-        var before = data.currentPage - 1 ;
-        var after = data.currentPage + 1 ;
+        var before = data.obj.currentPage - 1 ;
+        var after = data.obj.currentPage + 1 ;
         var nav = '<ul class="pagination">' +
             '<li>' +
             '<a href="javascript:select_employee('+before+')" aria-label="Previous">' +
@@ -101,8 +101,8 @@ function select_employee(currentPage) {
             '</a>' +
             ' </li>';
 
-        for (var i = 1; i <= data.totalPage;i++){
-            if(i == data.currentPage){
+        for (var i = 1; i <= data.obj.totalPage;i++){
+            if(i == data.obj.currentPage){
                 var ul = '<li class="active"><a href="javascript:select_employee('+i+')">'+i+'</a></li>';
             }else {
                 var ul = '<li><a href="javascript:select_employee('+i+')">'+i+'</a></li>';
@@ -137,8 +137,8 @@ function select_play(currentPage) {
             '\t\t\t\t<th>status</th>';
         $("#table_tr").html(lis);
         lis = "";
-        for (var i = 0; i<data.list.length ;i++){
-            var  play= data.list[i] ;
+        for (var i = 0; i<data.obj.list.length ;i++){
+            var  play= data.obj.list[i] ;
             var td = '<tr>' +
                 '<td>'+play.play_type_id+'</td>'+
                 '<td>'+play.play_lang_id+'</td>'+
@@ -152,8 +152,8 @@ function select_play(currentPage) {
         }
         $("#table").append(lis);
         //分页条
-        var before = data.currentPage - 1 ;
-        var after = data.currentPage + 1 ;
+        var before = data.obj.currentPage - 1 ;
+        var after = data.obj.currentPage + 1 ;
         var nav = '<ul class="pagination">' +
             '<li>' +
             '<a href="javascript:select_play('+before+')" aria-label="Previous">' +
@@ -161,8 +161,8 @@ function select_play(currentPage) {
             '</a>' +
             ' </li>';
 
-        for (var i = 1; i <= data.totalPage;i++){
-            if (i == data.currentPage){
+        for (var i = 1; i <= data.obj.totalPage;i++){
+            if (i == data.obj.currentPage){
                 var ul = '<li class="active"><a href="javascript:select_play('+i+')">'+i+'</a></li>';
             } else {
                 var ul = '<li><a href="javascript:select_play('+i+')">'+i+'</a></li>';
@@ -195,8 +195,8 @@ function select_schedule(currentPage) {
             '\t\t\t\t<th>票价</th>';
         $("#table_tr").html(lis);
         lis = "";
-        for (var i = 0; i<data.list.length ;i++){
-            var schedule =data.list[i] ;
+        for (var i = 0; i<data.obj.list.length ;i++){
+            var schedule =data.obj.list[i] ;
             var td = '<tr>' +
                 '<td>'+schedule.sched_id+'</td>'+
                 '<td>'+schedule.studio_id+'</td>'+
@@ -208,8 +208,8 @@ function select_schedule(currentPage) {
         }
         $("#table").append(lis);
         //分页条
-        var before = data.currentPage - 1 ;
-        var after = data.currentPage + 1 ;
+        var before = data.obj.currentPage - 1 ;
+        var after = data.obj.currentPage + 1 ;
         var nav = '<ul class="pagination">' +
             '<li>' +
             '<a href="javascript:select_schedule('+before+')" aria-label="Previous">' +
@@ -217,8 +217,8 @@ function select_schedule(currentPage) {
             '</a>' +
             ' </li>';
 
-        for (var i = 1; i <= data.totalPage;i++){
-            if(i == data.currentPage){
+        for (var i = 1; i <= data.obj.totalPage;i++){
+            if(i == data.obj.currentPage){
                 var ul = '<li class="active"><a href="javascript:select_schedule('+i+')">'+i+'</a></li>';
             }else {
                 var ul = '<li><a href="javascript:select_schedule('+i+')">'+i+'</a></li>';
@@ -236,7 +236,7 @@ function select_schedule(currentPage) {
 }
 
 function select_seat(currentPage) {
-    
+
     $("#select").attr("onclick","select_seat(1)");
     $("#span").html("影厅编号:");
     $("#selectName").attr("name","studio_id");
@@ -251,8 +251,8 @@ function select_seat(currentPage) {
             '\t\t\t\t<th>座位状态</th>';
         $("#table_tr").html(lis);
         lis = "";
-        for (var i = 0; i < data.list.length; i++) {
-            var seat = data.list[i];
+        for (var i = 0; i < data.obj.list.length; i++) {
+            var seat = data.obj.list[i];
             var td = '<tr>' +
                 '<td>' + seat.seat_id + '</td>' +
                 '<td>' + seat.studio_id + '</td>' +
@@ -264,8 +264,8 @@ function select_seat(currentPage) {
         }
         $("#table").append(lis);
         //分页条
-        var before = data.currentPage - 1;
-        var after = data.currentPage + 1;
+        var before = data.obj.currentPage - 1;
+        var after = data.obj.currentPage + 1;
         var nav = '<ul class="pagination">' +
             '<li>' +
             '<a href="javascript:select_seat(' + before + ')" aria-label="Previous">' +
@@ -273,8 +273,8 @@ function select_seat(currentPage) {
             '</a>' +
             ' </li>';
 
-        for (var i = 1; i <= data.totalPage; i++) {
-            if(i == data.currentPage){
+        for (var i = 1; i <= data.obj.totalPage; i++) {
+            if(i == data.obj.currentPage){
                 var ul = '<li class="active"><a href="javascript:select_seat(' + i + ')">' + i + '</a></li>';
             }else {
                 var ul = '<li><a href="javascript:select_seat(' + i + ')">' + i + '</a></li>';

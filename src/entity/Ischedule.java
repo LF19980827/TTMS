@@ -1,6 +1,7 @@
 package entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @author LFuser
@@ -11,8 +12,9 @@ public class Ischedule {
     private int sched_id;               //计划ID
     private int studio_id;              //演出厅ID
     private int play_id;                //电影ID
-    private Date sched_time;            //演出时间
+    private String sched_time_String;            //演出时间
     private float sched_ticket_price;   //票价
+    private Timestamp sched_time;
 
     public int getSched_id() {
         return sched_id;
@@ -38,11 +40,19 @@ public class Ischedule {
         this.play_id = play_id;
     }
 
+    public String getSched_time_String() {
+        return sched_time_String;
+    }
+
+    public void setSched_time_String(String sched_time_String) {
+        this.sched_time_String = sched_time_String;
+    }
+
     public Date getSched_time() {
         return sched_time;
     }
 
-    public void setSched_time(Date sched_time) {
+    public void setSched_time(Timestamp sched_time) {
         this.sched_time = sched_time;
     }
 
@@ -52,6 +62,15 @@ public class Ischedule {
 
     public void setSched_ticket_price(float sched_ticket_price) {
         this.sched_ticket_price = sched_ticket_price;
+    }
+
+    public  void TraDate(){
+        try {
+            sched_time =  Timestamp.valueOf(sched_time_String);
+        } catch (Exception e) {
+            System.out.println("时间字符串格式有误");
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -64,6 +83,5 @@ public class Ischedule {
                 ", sched_ticket_price=" + sched_ticket_price +
                 '}';
     }
-
 
 }

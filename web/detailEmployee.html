@@ -15,9 +15,9 @@
 <script>
 	$(function () {
 		$("#subBtn").click(function () {
-			$.post("employee/insert",$("#myform").serialize(),function (date) {
+			$.post("employee/add",$("#myform").serialize(),function (date) {
 				if(date.flag){
-					alert(date.errorMsg);
+					alert(date.successMsg);
 				}else{
 					alert(date.errorMsg);
 
