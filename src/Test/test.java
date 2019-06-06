@@ -11,43 +11,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class test {
-
-
-
-
-    //测试分页DAO层
-   // @Test
-    public void test2() {
-        Connection connection = DBUtils.getConnection();
-        PageDao<Istudio> pageDao = new PageDaoImpl();
-        Map<String, String[]> map = new HashMap<>();
-        String[] arr = new String[10];
-        arr[0] = "";
-        map.put("employee_name",arr);
-        IemployeeDao Dao = new employeeDaoImpl();
-        System.out.println(pageDao.judge(connection,"employee",map).size());
-    }
-
-    //测试分页service层
-   // @Test
-    public void test3(){
-        PageSelect<Istudio> pageSelect = new PageSelectImpl();
-        Map<String, String[]> map = new HashMap<>();
-        String[] arr = new String[10];
-        arr[0] = "";
-        map.put("employee_name",arr);
-        PageBean<Istudio> studioByPage =  pageSelect.findByPage(2,3,map,"employee");
-        System.out.println(studioByPage);
-    }
-
-
     public static void main(String[] args) {
-        employeeDaoImpl employeeDao = new employeeDaoImpl();
         Connection connection = DBUtils.getConnection();
         Iemployee iemployee = new Iemployee();
-        iemployee.setEmp_user("user");
-        iemployee.setEmp_password("123456");
-        Iemployee iemployee1 = employeeDao.login(connection, iemployee);
-        System.out.println(iemployee1);
+        iemployee.setEmp_no("3139");
+        iemployee.setEmp_name("丰");
+        iemployee.setEmp_tel_num("12345678911");
+        iemployee.setEmp_addr("XUPT");
+        iemployee.setEmp_email("2@qq.com");
+        iemployee.setEmp_user("feng");
+        iemployee.setEmp_password("123");
+
+        employeeDaoImpl employeeDao = new employeeDaoImpl();
+        employeeDao.insert(connection,iemployee);
     }
 }

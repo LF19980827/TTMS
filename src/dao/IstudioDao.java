@@ -61,5 +61,11 @@ public interface IstudioDao {
      */
     public Istudio select2(Connection connection, Istudio istudio);
 
-
+    /**
+     * 根据演出厅ID查询演出厅信息
+     * @param connection
+     * @param istudio
+     * @return
+     */
+    public Istudio select3(Connection connection, Istudio istudio);
 }

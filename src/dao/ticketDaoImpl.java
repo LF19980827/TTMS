@@ -20,13 +20,13 @@ public class ticketDaoImpl extends DBUtils<Iticket> implements IticketDao {
     @Override
     public int insert(Connection connection, Iticket iticket) {
         ticketDaoImpl ticketDao = new ticketDaoImpl();
-        String sql = "INSERT INTO ticket(seat_id,sched_id,ticket_price,ticket_status,ticket_locked_time)VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO ticket(seat_id,sched_id,ticket_price,ticket_status,seat_row,seat_column,studio_name)VALUES(?,?,?,?,?,?)";
         return ticketDao.update(connection,sql,iticket.getSeat_id(),iticket.getSched_id(),iticket.getTicket_price(),
-                iticket.getTicket_status(),iticket.getTicket_locked_time());
+                iticket.getTicket_status(),iticket.getSeat_row(),iticket.getSeat_rolumn(),iticket.getStudio_name());
     }
 
     /**
-     * 根据演出票ID修改演出票信息
+     * 根据演出票ID修改演出票状态
      * @param connection
      * @param iticket
      * @return
@@ -34,9 +34,8 @@ public class ticketDaoImpl extends DBUtils<Iticket> implements IticketDao {
     @Override
     public int update(Connection connection, Iticket iticket) {
         ticketDaoImpl ticketDao = new ticketDaoImpl();
-        String sql = "UPDATE ticket SET seat_id=?,sched_id=?,ticket_price=?,ticket_status=?,ticket_locked_time=? WHERE ticket_id=?";
-        return ticketDao.update(connection,sql,iticket.getSeat_id(),iticket.getSched_id(),iticket.getTicket_price(),
-                iticket.getTicket_status(),iticket.getTicket_locked_time(),iticket.getTicket_id());
+        String sql = "UPDATE ticket SET ticket_status=?,ticket_locked_time=? WHERE ticket_id=?";
+        return ticketDao.update(connection,sql, iticket.getTicket_status(),iticket.getTicket_locked_time(),iticket.getTicket_id());
     }
 
     /**

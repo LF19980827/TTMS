@@ -2,6 +2,9 @@ package dao;
 
 import Tools.DBUtils;
 import entity.Ischedule;
+import entity.Iseat;
+import entity.Istudio;
+import entity.Iticket;
 
 import java.sql.Connection;
 import java.util.List;
@@ -21,8 +24,11 @@ public class scheduleDaoImpl extends DBUtils<Ischedule> implements IscheduleDao 
     public int insert(Connection connection, Ischedule ischedule) {
         scheduleDaoImpl scheduleDao = new scheduleDaoImpl();
         String sql = "INSERT INTO schedule(studio_id,play_id,sched_time,sched_ticket_price) VALUES(?,?,?,?)";
-        return scheduleDao.update(connection,sql,ischedule.getStudio_id(),ischedule.getPlay_id(),
+        int i = scheduleDao.update(connection,sql,ischedule.getStudio_id(),ischedule.getPlay_id(),
                 ischedule.getSched_time(),ischedule.getSched_ticket_price());
+
+        scheduleDao.insertTicket(connection,ischedule);     //生成演出票
+        return i;
     }
 
     /**
@@ -128,5 +134,41 @@ public class scheduleDaoImpl extends DBUtils<Ischedule> implements IscheduleDao 
             return false;
         }
         return true;
+    }
+
+    /**
+     * 增加演出计划的同时生成票
+     * @param connection
+     * @param ischedule
+     */
+    private void insertTicket(Connection connection, Ischedule ischedule) {
+        Iticket iticket = new Iticket();
+        ticketDaoImpl ticketDao = new ticketDaoImpl();
+
+        //根据演出计划获取演出厅信息
+        Istudio istudio = new Istudio();
+        istudio.setStudio_id(ischedule.getStudio_id());
+        studioDaoImpl studioDao = new studioDaoImpl();
+        istudio = studioDao.select3(connection,istudio);
+
+        //根据演出厅信息，查询演出厅所有座位信息
+        Iseat iseat = new Iseat();
+        iseat.setStudio_id(istudio.getStudio_id());
+        seatDaoImpl seatDao = new seatDaoImpl();
+        List<Iseat> iseats = seatDao.getAll(connection,iseat);
+
+        //根据以上信息生成演出票
+        iticket.setSched_id(ischedule.getSched_id());  //获取演出计划ID
+        iticket.setTicket_price(ischedule.getSched_ticket_price());     //获取票的价格
+        iticket.setTicket_status(0);        //初始化票的状态为未售
+        iticket.setStudio_name(istudio.getStudio_name());       //获取演出厅的名称
+
+        for (Iseat iseat1 : iseats) {
+            iticket.setSeat_id(iseat1.getSeat_id());
+            iticket.setSeat_rolumn(iseat1.getSeat_column());
+            iticket.setSeat_row(iseat1.getSeat_row());
+
+            ticketDao.insert(connection,iticket);
+        }
     }
 }

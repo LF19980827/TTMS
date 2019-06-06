@@ -107,6 +107,12 @@ public class studioDaoImpl extends DBUtils<Istudio> implements IstudioDao {
         return studioDao.get(connection,sql,istudio.getStudio_name());
     }
 
+    public Istudio select3(Connection connection, Istudio istudio){
+        studioDaoImpl studioDao = new studioDaoImpl();
+        String sql = "SELECT * FROM studio WHERE studio_id =?";
+        return studioDao.get(connection,sql,istudio.getStudio_id());
+    }
+
     /**
      * 创建演出厅的时候增加座位
      * @param connection
