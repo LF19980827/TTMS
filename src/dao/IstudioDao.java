@@ -23,7 +23,7 @@ public interface IstudioDao {
     public int insert(Connection connection, Istudio istudio);
 
     /**
-     * 根据演出厅ID修改影厅信息
+     * 根据演出厅ID修改演出厅状态
      * @param connection
      * @param istudio
      * @return 是否修改成功

@@ -1,9 +1,9 @@
 package service;
 
 import Tools.DBUtils;
-import dao.Isale_itemDao;
-import dao.sale_itemDaoImpl;
-import entity.Isale_item;
+import dao.IsaleDao;
+import dao.saleDaoImpl;
+import entity.Isale;
 
 import java.sql.Connection;
 import java.util.List;
@@ -12,38 +12,38 @@ import java.util.List;
  * @author LFuser
  * @create 2019-05-25-15:28
  */
-public class sale_itemServiceImpl implements Isale__itemService {
+public class saleServiceImpl implements IsaleService {
     Connection connection = null;
-    Isale_itemDao isale_itemDao = new sale_itemDaoImpl();
+    IsaleDao isaleDao = new saleDaoImpl();
 
     /**
      * 增加销售单信息
-     * @param isale_item
+     * @param isale
      * @return
      */
     @Override
-    public int sale_itemInsert(Isale_item isale_item) {
+    public int saleInsert(Isale isale) {
         connection = DBUtils.getConnection();
         int i = -1;
-        if(isale_itemDao.isExist(connection,isale_item)){
+        if(isaleDao.isExist(connection,isale)){
             return i;
         }
-        i = isale_itemDao.insert(connection,isale_item);
+        i = isaleDao.insert(connection,isale);
         DBUtils.releaseDB(connection);
         return i;
     }
 
     /**
      * 根据销售单ID更新销售单状态
-     * @param isale_item
+     * @param isale
      * @return
      */
     @Override
-    public int sale_itemUpdate(Isale_item isale_item) {
+    public int saleUpdate(Isale isale) {
         connection = DBUtils.getConnection();
         int i = -1;
-        if(isale_itemDao.isExist(connection,isale_item)){
-            i = isale_itemDao.update(connection,isale_item);
+        if(isaleDao.isExist(connection,isale)){
+            i = isaleDao.update(connection,isale);
         }
         DBUtils.releaseDB(connection);
         return i;
@@ -51,15 +51,15 @@ public class sale_itemServiceImpl implements Isale__itemService {
 
     /**
      * 根据销售单ID获取销售单信息
-     * @param isale_item
+     * @param isale
      * @return
      */
     @Override
-    public Isale_item sale_itemGet(Isale_item isale_item) {
+    public Isale saleGet(Isale isale) {
         connection = DBUtils.getConnection();
-        isale_item = isale_itemDao.select(connection,isale_item);
+        isale = isaleDao.select(connection,isale);
         DBUtils.releaseDB(connection);
-        return isale_item;
+        return isale;
     }
 
     /**
@@ -67,10 +67,10 @@ public class sale_itemServiceImpl implements Isale__itemService {
      * @return
      */
     @Override
-    public List<Isale_item> sale_itemGetAll() {
+    public List<Isale> saleGetAll() {
         connection = DBUtils.getConnection();
-        List<Isale_item> isale_items = isale_itemDao.getAll(connection);
+        List<Isale> isales = isaleDao.getAll(connection);
         DBUtils.releaseDB(connection);
-        return isale_items;
+        return isales;
     }
 }

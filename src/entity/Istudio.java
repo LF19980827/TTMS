@@ -11,6 +11,7 @@ public class Istudio {
     private int studio_row_count;       //行数
     private int studio_col_count;       //列数
     private String studio_introduction; //简介
+    private int studio_status;          //演出厅状态
 
     public int getStudio_id() {
         return studio_id;
@@ -52,6 +53,14 @@ public class Istudio {
         this.studio_introduction = studio_introduction;
     }
 
+    public int getStudio_status() {
+        return studio_status;
+    }
+
+    public void setStudio_status(int studio_status) {
+        this.studio_status = studio_status;
+    }
+
     @Override
     public String toString() {
         return "Istudio{" +
@@ -60,8 +69,7 @@ public class Istudio {
                 ", studio_row_count=" + studio_row_count +
                 ", studio_col_count=" + studio_col_count +
                 ", studio_introduction='" + studio_introduction + '\'' +
+                ", studio_status=" + studio_status +
                 '}';
     }
-
-
 }

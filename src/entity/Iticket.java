@@ -2,6 +2,7 @@ package entity;
 
 import java.math.BigInteger;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * @author LFuser
@@ -12,9 +13,9 @@ public class Iticket {
     private BigInteger ticket_id;       //票ID
     private int seat_id;                //座位ID
     private int sched_id;               //计划ID
-    private float ticket_price;         //票价
+    private double ticket_price;         //票价
     private int ticket_status;          //状态
-    private Date ticket_locked_time;    //加锁时间
+    private Timestamp ticket_locked_time;    //加锁时间
     private int seat_row;               //座位的行
     private int seat_rolumn;            //座位的列
     private String studio_name;           //演出厅名称
@@ -43,11 +44,11 @@ public class Iticket {
         this.sched_id = sched_id;
     }
 
-    public float getTicket_price() {
+    public double getTicket_price() {
         return ticket_price;
     }
 
-    public void setTicket_price(float ticket_price) {
+    public void setTicket_price(double ticket_price) {
         this.ticket_price = ticket_price;
     }
 
@@ -59,11 +60,11 @@ public class Iticket {
         this.ticket_status = ticket_status;
     }
 
-    public Date getTicket_locked_time() {
+    public Timestamp getTicket_locked_time() {
         return ticket_locked_time;
     }
 
-    public void setTicket_locked_time(Date ticket_locked_time) {
+    public void setTicket_locked_time(Timestamp ticket_locked_time) {
         this.ticket_locked_time = ticket_locked_time;
     }
 
@@ -102,7 +103,7 @@ public class Iticket {
                 ", ticket_locked_time=" + ticket_locked_time +
                 ", seat_row=" + seat_row +
                 ", seat_rolumn=" + seat_rolumn +
-                ", studio_name=" + studio_name +
+                ", studio_name='" + studio_name + '\'' +
                 '}';
     }
 }

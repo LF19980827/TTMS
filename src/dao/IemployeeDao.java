@@ -65,4 +65,13 @@ public interface IemployeeDao {
      * @return 如果成功则返回所有员工信息
      */
     public Iemployee login(Connection connection, Iemployee iemployee);
+
+
+    /**
+     * 判断员工是否在职
+     * @param connection
+     * @param iemployee
+     * @return
+     */
+    public boolean isExist2(Iemployee iemployee);
 }

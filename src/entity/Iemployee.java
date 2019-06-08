@@ -14,6 +14,8 @@ public class Iemployee {
     private String emp_email;       //Email
     private String emp_user;        //员工账号
     private String emp_password;    //员工密码
+    private int emp_status;         //员工状态
+
 
     public int getEmp_id() {
         return emp_id;
@@ -79,6 +81,14 @@ public class Iemployee {
         this.emp_password = emp_password;
     }
 
+    public int getEmp_status() {
+        return emp_status;
+    }
+
+    public void setEmp_status(int emp_status) {
+        this.emp_status = emp_status;
+    }
+
     @Override
     public String toString() {
         return "Iemployee{" +
@@ -90,6 +100,7 @@ public class Iemployee {
                 ", emp_email='" + emp_email + '\'' +
                 ", emp_user='" + emp_user + '\'' +
                 ", emp_password='" + emp_password + '\'' +
+                ", emp_status=" + emp_status +
                 '}';
     }
 

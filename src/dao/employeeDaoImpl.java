@@ -21,9 +21,9 @@ public class employeeDaoImpl extends DBUtils<Iemployee> implements IemployeeDao{
     @Override
     public int insert(Connection connection, Iemployee iemployee) {
         employeeDaoImpl employeeDao = new employeeDaoImpl();
-        String sql = "INSERT INTO employee(emp_no,emp_name,emp_tel_num,emp_addr,emp_email,emp_user,emp_password) VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO employee(emp_no,emp_name,emp_tel_num,emp_addr,emp_email,emp_user,emp_password,emp_status) VALUES(?,?,?,?,?,?,?,?)";
         return employeeDao.update(connection,sql, iemployee.getEmp_no(),iemployee.getEmp_name(),iemployee.getEmp_tel_num(),
-                iemployee.getEmp_addr(),iemployee.getEmp_email(),iemployee.getEmp_user(),iemployee.getEmp_password());
+                iemployee.getEmp_addr(),iemployee.getEmp_email(),iemployee.getEmp_user(),iemployee.getEmp_password(),1);
     }
 
     /**
@@ -49,8 +49,8 @@ public class employeeDaoImpl extends DBUtils<Iemployee> implements IemployeeDao{
     @Override
     public int delete(Connection connection, Iemployee iemployee) {
         employeeDaoImpl employeeDao = new employeeDaoImpl();
-        String sql = "DELETE FROM employee WHERE emp_no=?";
-        return employeeDao.update(connection,sql,iemployee.getEmp_no());
+        String sql = "UPDATE employee SET emp_status=?  WHERE emp_no=?";
+        return employeeDao.update(connection,sql,0,iemployee.getEmp_no());
     }
 
     /**
@@ -95,6 +95,20 @@ public class employeeDaoImpl extends DBUtils<Iemployee> implements IemployeeDao{
        return true;
     }
 
+
+    /**
+     * 判断员工是否在职
+     * @param iemployee
+     * @return
+     */
+    public boolean isExist2( Iemployee iemployee) {
+        employeeDaoImpl employeeDao = new employeeDaoImpl();
+        if (iemployee.getEmp_status() == 0){
+            return false;
+        }
+        return true;
+    }
+
     /**
      * 登陆
      * @param connection
@@ -105,6 +119,7 @@ public class employeeDaoImpl extends DBUtils<Iemployee> implements IemployeeDao{
     public Iemployee login(Connection connection, Iemployee iemployee) {
         employeeDaoImpl employeeDao = new employeeDaoImpl();
         String sql = "SELECT * FROM employee WHERE emp_user = ? AND emp_password = ?";
-        return employeeDao.get(connection,sql,iemployee.getEmp_user(),iemployee.getEmp_password());
+        return  employeeDao.get(connection,sql,iemployee.getEmp_user(),iemployee.getEmp_password());
     }
+
 }

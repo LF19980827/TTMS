@@ -12,8 +12,9 @@ public class Ischedule {
     private int sched_id;               //计划ID
     private int studio_id;              //演出厅ID
     private int play_id;                //电影ID
-    private String sched_time_String;            //演出时间
-    private float sched_ticket_price;   //票价
+    private String sched_time_String;   //演出时间
+    private double sched_ticket_price;  //票价
+    private int sched_status;           //状态
     private Timestamp sched_time;
 
     public int getSched_id() {
@@ -56,12 +57,20 @@ public class Ischedule {
         this.sched_time = sched_time;
     }
 
-    public float getSched_ticket_price() {
+    public double getSched_ticket_price() {
         return sched_ticket_price;
     }
 
-    public void setSched_ticket_price(float sched_ticket_price) {
+    public void setSched_ticket_price(double sched_ticket_price) {
         this.sched_ticket_price = sched_ticket_price;
+    }
+
+    public int getSched_status() {
+        return sched_status;
+    }
+
+    public void setSched_status(int sched_status) {
+        this.sched_status = sched_status;
     }
 
     public  void TraDate(){
@@ -79,9 +88,10 @@ public class Ischedule {
                 "sched_id=" + sched_id +
                 ", studio_id=" + studio_id +
                 ", play_id=" + play_id +
-                ", sched_time=" + sched_time +
+                ", sched_time_String='" + sched_time_String + '\'' +
                 ", sched_ticket_price=" + sched_ticket_price +
+                ", sched_status=" + sched_status +
+                ", sched_time=" + sched_time +
                 '}';
     }
-
 }

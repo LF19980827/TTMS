@@ -45,6 +45,9 @@ public class loginServlet_ajax extends HttpServlet {
         if(iemployee1 == null){
             info.setFlag(false);
             info.setErrorMsg("用户名或密码错误");
+        }else if(iemployee1.getEmp_status()==0){
+            info.setFlag(false);
+            info.setErrorMsg("员工已离职");
         }else {
             info.setFlag(true);
         }

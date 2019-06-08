@@ -9,13 +9,13 @@ import java.util.Date;
  */
 public class Iplay {
     private int play_id;                //电影ID
-    private int play_type_id;           //电影类型
+    private int play_type_id;           //电影类型ID
     private int play_lang_id;           //电影语言ID
     private String play_name;           //电影名称
     private String play_introduction;   //剧情简介
     private int play_length;            //演出时长
-    private float play_ticket_price;    //基准票价
-    private int play_status;            //电影状态
+    private double play_ticket_price;    //基准票价
+    private int play_status;            //电影状态          （0--待上映  1--上映中  2-已下映）
 
 
     public int getPlay_id() {
@@ -66,11 +66,11 @@ public class Iplay {
         this.play_length = play_length;
     }
 
-    public float getPlay_ticket_price() {
+    public double getPlay_ticket_price() {
         return play_ticket_price;
     }
 
-    public void setPlay_ticket_price(float play_ticket_price) {
+    public void setPlay_ticket_price(double play_ticket_price) {
         this.play_ticket_price = play_ticket_price;
     }
 

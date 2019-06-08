@@ -51,4 +51,12 @@ public interface IplayDao {
      * @return 是否存在
      */
     public boolean isExist(Connection connection, Iplay iplay);
+
+    /**
+     * 根据电影ID修改电影状态
+     * @param connection
+     * @param iplay
+     * @return
+     */
+    public int update2(Connection connection , Iplay iplay);
 }

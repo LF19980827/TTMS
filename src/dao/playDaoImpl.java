@@ -34,9 +34,9 @@ public class playDaoImpl extends DBUtils<Iplay> implements IplayDao {
     @Override
     public int update(Connection connection, Iplay iplay) {
         playDaoImpl playDao = new playDaoImpl();
-        String sql="UPDATE play SET play_type_id=?,play_lang_id=?,play_name=?,play_introduction=?,play_length=?,play_ticket_price=?,play_status=? WHERE play_id=?";
+        String sql="UPDATE play SET play_type_id=?,play_lang_id=?,play_name=?,play_introduction=?,play_length=?,play_ticket_price=? WHERE play_id=?";
         return playDao.update(connection,sql,iplay.getPlay_type_id(),iplay.getPlay_lang_id(),iplay.getPlay_name(),
-                iplay.getPlay_introduction(),iplay.getPlay_length(),iplay.getPlay_ticket_price(),iplay.getPlay_status(),iplay.getPlay_id());
+                iplay.getPlay_introduction(),iplay.getPlay_length(),iplay.getPlay_ticket_price(),iplay.getPlay_id());
     }
 
     /**
@@ -80,4 +80,20 @@ public class playDaoImpl extends DBUtils<Iplay> implements IplayDao {
         }
        return true;
     }
+
+    /**
+     * 根据电影ID修改电影状态
+     * @param connection
+     * @param iplay
+     * @return
+     */
+    @Override
+    public int update2(Connection connection, Iplay iplay) {
+        playDaoImpl playDao = new playDaoImpl();
+        String sql="UPDATE play SET play_status=? WHERE play_id=?";
+        playDao.update(connection,sql,iplay.getPlay_status(),iplay.getPlay_id());
+        return 0;
+    }
+
+
 }

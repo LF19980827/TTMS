@@ -54,8 +54,8 @@ public class scheduleDaoImpl extends DBUtils<Ischedule> implements IscheduleDao 
     @Override
     public int delete(Connection connection, Ischedule ischedule) {
         scheduleDaoImpl scheduleDao = new scheduleDaoImpl();
-        String sql = "DELETE FROM schedule WHERE sched_id=?";
-        return scheduleDao.update(connection,sql,ischedule.getSched_id());
+        String sql = "UPDATE schedule SET sched_status WHERE sched_id=?";
+        return scheduleDao.update(connection,sql,ischedule.getSched_status(),ischedule.getSched_id());
     }
 
     /**
@@ -164,6 +164,9 @@ public class scheduleDaoImpl extends DBUtils<Ischedule> implements IscheduleDao 
         iticket.setStudio_name(istudio.getStudio_name());       //获取演出厅的名称
 
         for (Iseat iseat1 : iseats) {
+            if(iseat1.getSeat_status()==0){
+                continue;
+            }
             iticket.setSeat_id(iseat1.getSeat_id());
             iticket.setSeat_rolumn(iseat1.getSeat_column());
             iticket.setSeat_row(iseat1.getSeat_row());

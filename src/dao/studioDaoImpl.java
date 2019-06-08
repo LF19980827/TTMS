@@ -25,10 +25,10 @@ public class studioDaoImpl extends DBUtils<Istudio> implements IstudioDao {
     public int insert(Connection connection, Istudio istudio) {
 
         studioDaoImpl studioDao = new studioDaoImpl();
-        String sql = "INSERT INTO studio (studio_name,studio_row_count,studio_col_count,studio_introduction) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO studio (studio_name,studio_row_count,studio_col_count,studio_introduction,studio_status) VALUES(?,?,?,?,?)";
 
         int i = studioDao.update(connection, sql, istudio.getStudio_name(), istudio.getStudio_row_count(),
-                istudio.getStudio_col_count(), istudio.getStudio_introduction());
+                istudio.getStudio_col_count(), istudio.getStudio_introduction(),1);
 
         sql = "select * from studio where studio_name = ?";
         istudio = studioDao.get(connection,sql,istudio.getStudio_name());
@@ -39,7 +39,7 @@ public class studioDaoImpl extends DBUtils<Istudio> implements IstudioDao {
     }
 
     /**
-     * 根据演出厅ID修改演出厅信息
+     * 根据演出厅ID修改演出厅状态
      * @param connection
      * @param istudio
      * @return
@@ -47,9 +47,8 @@ public class studioDaoImpl extends DBUtils<Istudio> implements IstudioDao {
     @Override
     public int update(Connection connection, Istudio istudio) {
         studioDaoImpl studioDao = new studioDaoImpl();
-        String sql = "UPDATE studio SET studio_name=?,studio_row_count=?,studio_col_count=?,studio_introduction=? WHERE studio_id=?";
-        return studioDao.update(connection,sql,istudio.getStudio_name(),istudio.getStudio_row_count(),istudio.getStudio_col_count(),
-                istudio.getStudio_introduction(),istudio.getStudio_id());
+        String sql = "UPDATE studio SET studio_status=? WHERE studio_id=?";
+        return studioDao.update(connection,sql,istudio.getStudio_status(),istudio.getStudio_id());
     }
 
     /**
